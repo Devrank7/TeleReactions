@@ -1,0 +1,6 @@
+version: '3.8'
+services:
+  bots:
+    build: .
+    container_name: bot1
+
