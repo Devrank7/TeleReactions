@@ -8,6 +8,8 @@ load_dotenv()
 env_variables = os.environ
 
 bot_tokens = {key: value for key, value in env_variables.items() if key.startswith("BOT_TOKEN") if value}
+MODERATOR_BOT = env_variables["MODERATOR_BOT"]
+
 for key, value in bot_tokens.items():
     print(f"{key}: {value}")
 
@@ -28,8 +30,13 @@ async def pooling_bot(token: str):
         print(f"Error with bot {token}: {e}")
 
 
+async def pooling_moderator_bot(token: str):
+    pass
+
+
 async def main():
     tasks = [asyncio.create_task(pooling_bot(value)) for key, value in bot_tokens.items()]
+    tasks.append(asyncio.create_task(pooling_moderator_bot(MODERATOR_BOT)))
     await asyncio.gather(*tasks)
     print("All bots are running!")
 
