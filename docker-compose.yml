@@ -3,4 +3,3 @@ services:
   bots:
     build: .
     container_name: bot1
-
